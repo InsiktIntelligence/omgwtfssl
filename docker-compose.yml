@@ -1,0 +1,22 @@
+version: "3.4"
+services:
+  client-certificator:
+    environment:
+      - CA_EXPIRE=${EXPIRY}
+      - SSL_EXPIRE=${EXPIRY}
+    image: docker.apiumtech.io/dockercerts:0.0.1
+    volumes:
+      - ${CLIENT_CERT_FOLDER}:/certs
+  server-certificator:
+    image: docker.apiumtech.io/dockercerts:0.0.1
+    environment:
+      - CA_EXPIRE=${EXPIRY}
+      - SSL_EXPIRE=${EXPIRY}
+      - SSL_DNS=${DNSS}
+      - SSL_IP=${IPS}
+      - SSL_KEY=/server/key.pem
+      - SSL_CERT=/server/cert.pem
+    volumes:
+      - ${CLIENT_CERT_FOLDER}:/certs
+      - ${SERVER_CERT_FOLDER}:/server
+
