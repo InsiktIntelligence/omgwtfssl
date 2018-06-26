@@ -3,6 +3,7 @@ services:
   client-certificator:
     environment:
       - CA_EXPIRE=${EXPIRY}
+      - CA_SUBJECT=${SUBJECT}
       - SSL_EXPIRE=${EXPIRY}
     image: docker.apiumtech.io/dockercerts:0.0.1
     volumes:
@@ -11,6 +12,7 @@ services:
     image: docker.apiumtech.io/dockercerts:0.0.1
     environment:
       - CA_EXPIRE=${EXPIRY}
+      - CA_SUBJECT=${SUBJECT}
       - SSL_EXPIRE=${EXPIRY}
       - SSL_DNS=${DNSS}
       - SSL_IP=${IPS}
