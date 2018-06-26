@@ -1,6 +1,8 @@
 USAGE
 
-	bash doCerts <CERT_FOLDER> <IP_LIST_SEPARATED_BY_COMMAS> <DNS_SEPARATED_BY_COMMAS> <EXPIRY_DATE>
+	bash doCerts <CA_SUBJECT> <CERT_FOLDER> <IP_LIST_SEPARATED_BY_COMMAS> <DNS_SEPARATED_BY_COMMAS> <EXPIRY_DATE>
+
+**CA_SUBJECT -> the name of the ca**
 
 **CERT_FOLDER -> Folder where the certificates will be generated**
 		
