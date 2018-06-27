@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-
-CERT_FOLDER=$1
-SUBJECT=$2
+CERT_FOLDER=$2
+SUBJECT=$1
 IPS=$3
 DNSS=$4
 EXPIRY=$5
