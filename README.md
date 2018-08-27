@@ -26,3 +26,57 @@ USAGE
 
 **EXPIRY_DATE -> days until de cert will expire, f.e: 365 (one year)**
 
+
+
+**STEPS TO DEPLOY CERT ON SERVER**
+
+- copy the server certs in some part of the disk
+- configure dockerd via daemon.json
+- fix systemd bad configuration
+- restart service docker
+
+**Configuration of /etc/docker/daemon.json to expose and cert dockerd 2376 port**
+	
+					
+	{
+		"hosts": ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2376"],
+		"tls": true,
+		"tlscacert": "<LOCATION_OF_CERTS>/ca.pem",
+		"tlscert": "<LOCATION_OF_CERTS>/cert.pem",
+		"tlskey": "<LOCATION_OF_CERTS>/key.pem",
+		"tlsverify": true
+	}
+	
+	
+**Fix systemd bad configuration**
+
+- create file /etc/systemd/system/docker.service.d/override.conf with following content:
+
+		[Service]
+		ExecStart=
+		ExecStart=/usr/bin/dockerd
+
+**Restart service docker**
+
+`systemctl daemon-reload`
+
+`systemctl restart docker.service`
+
+**STEPS TO CONNECT TO REMOTE DOCKERD**
+
+- configure docker client with envars
+
+`export DOCKER_HOST=tcp://<PUBLIC_IP_OF_REMOTE_DOCKERD>:2376`
+
+`export DOCKER_TLS_VERIFY=1`
+
+`export DOCKER_CERT_PATH=<FOLDER_WHERE_CLIENT_CERTS_EXISTS>`
+
+- proceed normaly with docker commands
+
+
+
+
+
+
+
