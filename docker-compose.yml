@@ -5,11 +5,15 @@ services:
       - CA_EXPIRE=${EXPIRY}
       - CA_SUBJECT=${SUBJECT}
       - SSL_EXPIRE=${EXPIRY}
-    image: paulczar/omgwtfssl:v0.1.0
+    image: certificator
+    build:
+      context: .
     volumes:
       - ${CLIENT_CERT_FOLDER}:/certs
   server-certificator:
-    image: paulczar/omgwtfssl:v0.1.0
+    image: certificator
+    build:
+      context: .
     environment:
       - CA_EXPIRE=${EXPIRY}
       - CA_SUBJECT=${SUBJECT}
