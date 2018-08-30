@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -ex
 CERT_FOLDER=$2
 SUBJECT=$1
 IPS=$3
