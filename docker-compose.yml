@@ -5,11 +5,11 @@ services:
       - CA_EXPIRE=${EXPIRY}
       - CA_SUBJECT=${SUBJECT}
       - SSL_EXPIRE=${EXPIRY}
-    image: docker.apiumtech.io/dockercerts:0.0.1
+    image: paulczar/omgwtfssl:v0.1.0
     volumes:
       - ${CLIENT_CERT_FOLDER}:/certs
   server-certificator:
-    image: docker.apiumtech.io/dockercerts:0.0.1
+    image: paulczar/omgwtfssl:v0.1.0
     environment:
       - CA_EXPIRE=${EXPIRY}
       - CA_SUBJECT=${SUBJECT}
